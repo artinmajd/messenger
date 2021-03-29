@@ -4,7 +4,7 @@ export const Button = styled.button`
   border: 0;
   box-shadow: none;
   border-radius: 10px;
-  background-color: rgb(0,100,100);
+  background-color: rgb(0,130,255);
   margin-left: 8px;
   color: whitesmoke;
   font-size: 16px;
@@ -14,6 +14,8 @@ export const Button = styled.button`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
+  position: sticky;
+  bottom: 5px;
   
   & form {
     display: flex;

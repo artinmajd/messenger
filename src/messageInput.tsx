@@ -19,10 +19,12 @@ function MessageInput({inputState, setInputState, setSentMessages}
     setInputState('');
   },[inputState,setSentMessages, setInputState])
 
+  const refCallback = useCallback((element)=>element.focus(),[]);
+
   return(
   <InputContainer>
     <form onSubmit={handleSubmit}>
-      <input value={inputState} onChange={inputChangeCallback}/>
+      <input value={inputState} onChange={inputChangeCallback} ref={refCallback}/>
       <Button onClick={handleSubmit}>
           Send
       </Button>
