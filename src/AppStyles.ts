@@ -3,9 +3,9 @@ import styled from '@emotion/styled'
 export const AppContainer = styled.div`
 display: flex;
 flex-direction: column;
-height: 300px;
-width: 600px;
+height: 90vh;
+width: 90vw;
 background-color: rgb(230,230,230);
 border-radius: 10px;
-padding: 8px 8px;
+padding: 10px 8px;
 `;

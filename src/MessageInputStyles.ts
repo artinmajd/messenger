@@ -4,23 +4,33 @@ export const Button = styled.button`
   border: 0;
   box-shadow: none;
   border-radius: 10px;
-  background-color: rgb(0,100,100);
-  height: 100%;
+  background-color: rgb(0,130,255);
   margin-left: 8px;
   color: whitesmoke;
   font-size: 16px;
+  height: 21px;
 `;
 
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
+  position: sticky;
+  bottom: 5px;
   
+  & form {
+    display: flex;
+    flex-direction: row;
+    width: 100% ;
+    align-items: flex-end;
+  }
+
   & input{
     width: 100%;
     border-radius: 10px;
     border: 0 solid ;
     padding-left: 10px;
     font-family: "Comic Sans MS";
+    margin-top: 10px;
 
     :focus{
       outline: none;
