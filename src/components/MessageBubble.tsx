@@ -1,4 +1,4 @@
-import {Bubble, BubblePoint, Circle, Rectangle} from './MessageBubbleStyles'
+import {Bubble, BubblePoint, Circle, Rectangle} from '  ./MessageBubbleStyles'
 
 
 function MessageBubble({message, from}:{message: string, from: 'me'|'other'}){
