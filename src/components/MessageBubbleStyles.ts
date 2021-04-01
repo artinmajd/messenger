@@ -9,7 +9,7 @@ export const Bubble = styled.div <props>`
     border-radius: ${(props:props)=>{
         return props.from === 'me'? '30px 25px 5px 30px' : '15px 30px 30px 5px;'
         }};
-    padding: ${(props:props)=>{return props.from === 'me'? '3px 10px 3px 15px' : '3px 15px 3px 10px'}};
+    padding: ${(props:props)=>{return props.from === 'me'? '3px 10px 3px 10px' : '3px 10px 3px 10px'}};
     width: fit-content;
     max-width: calc(100% /2);
     background-color: ${(props:props)=>{return props.from === 'me'? 'rgb(152, 252, 119)' : 'white'}};
@@ -17,6 +17,15 @@ export const Bubble = styled.div <props>`
     align-self: ${(props:props)=>{return props.from === 'me'? 'flex-end' : 'flex-start'}};
     position: relative;
     word-wrap: break-word;
+    
+    :last-child{
+        transition: all 2s ease-in-out;
+        transform: translate(20px,0);
+    }
+    
+    
+    
+
 `;
 
 export const BubblePoint = styled.div`
