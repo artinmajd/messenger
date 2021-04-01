@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Container, Anchor } from "./ChatScreenStyles";
-import Bubble  from './MessageBubble'
+import { Container, Anchor} from "./ChatScreenStyles";
+import Bubble  from '../components/MessageBubble';
+import React from 'react';
 
 function ChatScreen({messages}: {messages: string[]}){
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
@@ -12,7 +13,6 @@ function ChatScreen({messages}: {messages: string[]}){
     useEffect(() => {
     scrollToBottom();
     }, [messages]);
-      
     return(
         <>
             <Container>
@@ -28,7 +28,6 @@ function ChatScreen({messages}: {messages: string[]}){
             ref = {messagesEndRef}
             />
             </Container>
-            
         </>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import MessageInput from './MessageInput'
-import ChatScreen from './ChatScreen'
+import MessageInput from './components/MessageInput'
+import ChatScreen from './screens/ChatScreen'
 import { AppContainer } from './AppStyles';
 
 function App() {

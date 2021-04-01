@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
-import {Button, InputContainer} from './MessageInputStyles'
+import {Button, InputContainer, LabelWrapper} from './MessageInputStyles';
+import { Upload } from "../images";
+
 function MessageInput({inputState, setInputState, setSentMessages}
   :{
     inputState: string,
@@ -29,6 +31,12 @@ function MessageInput({inputState, setInputState, setSentMessages}
           Send
       </Button>
     </form>
+      <LabelWrapper>
+        <label className="custom-file-upload" >
+            <input type="file"/>
+              <Upload />
+        </label>
+      </LabelWrapper>
   </InputContainer>
   )
 
