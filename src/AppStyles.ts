@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ChatScreenContainer = styled.div`
     display: flex;
@@ -13,4 +13,6 @@ export const ChatScreenContainer = styled.div`
 export const AppContainer = styled.div`
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    width: 100%;
 `;

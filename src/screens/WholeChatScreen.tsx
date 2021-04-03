@@ -2,19 +2,28 @@ import React from "react";
 import MessageInput from "../components/MessageInput";
 import ChatScreen from "./ChatScreen";
 import { ChatScreenContainer } from "./WholeChatScreenStyles";
+import {ContactsDataType} from '../App'
 
 interface Props{
-    sentMessages: string[];
+    activeContactSentMessages: string[];
     inputMessage: string;
     setInputMessage: any;
     handleSetSentMessages: any;
+    activeContactName: ContactsDataType['contactName'];
 }
 
-function WholeChatScreen({sentMessages,inputMessage, setInputMessage, handleSetSentMessages}:Props) {
+function WholeChatScreen({
+    activeContactSentMessages,
+    inputMessage,
+    setInputMessage,
+    handleSetSentMessages,
+    activeContactName,
+    }:Props) {
     return(
         <ChatScreenContainer >
-        <ChatScreen messages={sentMessages}/>
+        <ChatScreen messages={activeContactSentMessages} contactName={activeContactName}/>
         <MessageInput 
+        activeContact ={activeContactName}
         inputState={inputMessage}
         setInputState={setInputMessage}
         setSentMessages={handleSetSentMessages}

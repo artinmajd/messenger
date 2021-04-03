@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 import { Container, Anchor} from "./ChatScreenStyles";
 import Bubble  from '../components/MessageBubble';
 import React from 'react';
+import {ContactsDataType} from '../App'
 
-function ChatScreen({messages}: {messages: string[]}){
+function ChatScreen({messages, contactName}: {messages: string[],contactName : ContactsDataType['contactName'] }){
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView();

@@ -1,10 +1,25 @@
+import ConversationItem from "../components/ConversationItem";
 import { Container } from "./ChatListStyles";
+import {ContactsDataType} from '../App'
 
-
-function ChatList (){
+function ChatList ({contactsData,activeContact, setActiveContact}: 
+    {
+        contactsData: ContactsDataType[],
+        activeContact:ContactsDataType['contactName'],
+        setActiveContact: any,
+    }){
     return(
         <Container>
-            dalum dalum!
+            {
+                contactsData.map(contactData=>
+                <ConversationItem 
+                contactName={contactData.contactName} 
+                contactMessages={contactData.messages}
+                setActiveContact = {setActiveContact}
+                isActive ={contactData.contactName === activeContact}
+                />)
+            }
+          
         </Container>
     )
 }

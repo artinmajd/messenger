@@ -1,9 +1,11 @@
+import { Global } from '@emotion/react';
 import React, { useCallback, useMemo, useState } from 'react';
 import { AppContainer } from './AppStyles';
+import { getContactsWithMessage } from './backend';
 import ChatList from './screens/ChatList';
 import WholeChatScreen from './screens/WholeChatScreen';
 
-interface MasterDataType {
+ export interface ContactsDataType {
   contactName: string;
   messages: string[];
 }
@@ -11,20 +13,19 @@ interface MasterDataType {
 function App() {
   const [inputMessage, setInputMessage] = useState<string>("");
   const [activeContact, setActiveContact] = useState<string>('Artin')
-  const [contactsData, setContactsData] = useState<MasterDataType[]>([{contactName:'Artin' ,messages:[] }])
+  const [contactsData, setContactsData] = useState<ContactsDataType[]>(getContactsWithMessage())
 
   const handleSetSentMessages = useCallback((newMessage)=>{
     if( newMessage.trim() === ''){
       return;
     }
-    setContactsData((previousMasterData)=>{
-      console.log(contactsData)
-      const newMasterData = previousMasterData.map((previousData)=>previousData.contactName === activeContact
+    setContactsData((previousContactsData)=>{
+      const newContactsData = previousContactsData.map((previousData)=>previousData.contactName === activeContact
       ?{contactName: activeContact, messages:[...(previousData.messages),newMessage]}
       : previousData )
-      return(newMasterData)
+      return(newContactsData)
     });
-  },[activeContact,contactsData]);
+  },[activeContact]);
 
   const activeContactSentMessages = useMemo(()=>
     contactsData.find((item)=>item.contactName === activeContact)!.messages
@@ -34,12 +35,22 @@ function App() {
 
   return (
     <AppContainer>
-      <ChatList/> 
+      <Global 
+      styles={`
+        &body{
+          margin: 0;
+          padding: 0;
+        }
+      `
+      }
+      />
+      <ChatList contactsData={contactsData} activeContact={activeContact} setActiveContact={setActiveContact}/> 
       <WholeChatScreen 
       handleSetSentMessages={handleSetSentMessages}
       setInputMessage = {setInputMessage}
       inputMessage = {inputMessage}
-      sentMessages = {activeContactSentMessages}
+      activeContactSentMessages = {activeContactSentMessages}
+      activeContactName = {activeContact}
       />
       
     </AppContainer>
