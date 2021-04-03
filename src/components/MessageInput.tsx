@@ -2,13 +2,14 @@ import { useCallback, useEffect, useRef } from 'react';
 import {Button, InputContainer, LabelWrapper} from './MessageInputStyles';
 import { Upload } from "../images";
 import { ContactsDataType } from '../App';
+import { BackendGetContactsType } from '../backend';
 
 function MessageInput({inputState, setInputState, setSentMessages, activeContact}
   :{
     inputState: string,
     setInputState: any,
     setSentMessages: any,
-    activeContact: ContactsDataType['contactName'];
+    activeContact: BackendGetContactsType['name'] | undefined;
    }){
   
   const inputChangeCallback = useCallback(
@@ -19,7 +20,7 @@ function MessageInput({inputState, setInputState, setSentMessages, activeContact
   
   const handleSubmit = useCallback((event)=>{
     event.preventDefault()
-    setSentMessages(inputState);
+    setSentMessages({from: 'me' , message: inputState});
     setInputState('');
   },[inputState,setSentMessages, setInputState])
 

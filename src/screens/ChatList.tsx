@@ -1,22 +1,22 @@
 import ConversationItem from "../components/ConversationItem";
 import { Container } from "./ChatListStyles";
 import {ContactsDataType} from '../App'
+import { BackendGetContactsType } from "../backend";
 
-function ChatList ({contactsData,activeContact, setActiveContact}: 
+function ChatList ({contacts,activeContact, setActiveContact}: 
     {
-        contactsData: ContactsDataType[],
-        activeContact:ContactsDataType['contactName'],
+        contacts: BackendGetContactsType[],
+        activeContact:ContactsDataType['contactName'] | undefined,
         setActiveContact: any,
     }){
     return(
         <Container>
             {
-                contactsData.map(contactData=>
+                contacts.map(contact=>
                 <ConversationItem 
-                contactName={contactData.contactName} 
-                contactMessages={contactData.messages}
+                contactName={contact.name} 
                 setActiveContact = {setActiveContact}
-                isActive ={contactData.contactName === activeContact}
+                isActive ={contact.name === activeContact}
                 />)
             }
           

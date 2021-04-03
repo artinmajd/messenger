@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { BackendGetMessagesOfContactType } from '../backend';
 
 type props = {
-    from: 'me' | 'other';
+    from: BackendGetMessagesOfContactType['from'];
 }
 
 export const Bubble = styled.div <props>`

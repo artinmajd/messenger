@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MessageInput from "../components/MessageInput";
 import ChatScreen from "./ChatScreen";
 import { ChatScreenContainer } from "./WholeChatScreenStyles";
-import {ContactsDataType} from '../App'
+import { BackendGetContactsType, BackendGetMessagesOfContactType, getMessagesOfContact } from "../backend";
 
 interface Props{
-    activeContactSentMessages: string[];
     inputMessage: string;
     setInputMessage: any;
-    handleSetSentMessages: any;
-    activeContactName: ContactsDataType['contactName'];
+    activeContactName: BackendGetContactsType['name'] | undefined;
 }
 
 function WholeChatScreen({
-    activeContactSentMessages,
     inputMessage,
     setInputMessage,
-    handleSetSentMessages,
     activeContactName,
     }:Props) {
+    const [sentMessages, setSentMessages] =useState<BackendGetMessagesOfContactType[] | null>(null);
+    useEffect(()=>{
+        setSentMessages(getMessagesOfContact(activeContactName!))
+    },[activeContactName]);
+    const handleSetSentMessages = useCallback((newMessage)=>{
+          if( newMessage.message.trim() === ''){
+            return;
+          }
+          return(
+              sentMessages
+              ? setSentMessages((previousSentMessages)=>[...previousSentMessages!, {from: newMessage.from, message:newMessage.message}])
+              : setSentMessages([{from : newMessage.from, message: newMessage.message}])
+          )
+        },[sentMessages]);
+          
     return(
         <ChatScreenContainer >
-        <ChatScreen messages={activeContactSentMessages} contactName={activeContactName}/>
+        {
+        activeContactName?
+        <>
+        <ChatScreen contactName={activeContactName} messages={sentMessages}/>
         <MessageInput 
         activeContact ={activeContactName}
         inputState={inputMessage}
         setInputState={setInputMessage}
         setSentMessages={handleSetSentMessages}
         />
+        </>
+        : null
+        }
+        
       </ChatScreenContainer>
     )
 }

@@ -5,7 +5,7 @@ import {ContactsDataType} from '../App'
 export default function ConversationItem(
     {contactName,contactMessages, setActiveContact, isActive}:{
         contactName: ContactsDataType['contactName'],
-        contactMessages: ContactsDataType['messages'],
+        contactMessages?: ContactsDataType['messages'],
         setActiveContact: any,
         isActive: boolean,
         }){
