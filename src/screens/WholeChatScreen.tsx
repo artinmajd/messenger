@@ -17,7 +17,12 @@ function WholeChatScreen({
     }:Props) {
     const [sentMessages, setSentMessages] =useState<BackendGetMessagesOfContactType[] | null>(null);
     useEffect(()=>{
-        setSentMessages(getMessagesOfContact(activeContactName!))
+        console.log(123)
+        async function getMessages(){
+            const messages = await getMessagesOfContact(activeContactName!)
+            setSentMessages(messages); 
+        }
+        getMessages()
     },[activeContactName]);
     const handleSetSentMessages = useCallback((newMessage)=>{
           if( newMessage.message.trim() === ''){

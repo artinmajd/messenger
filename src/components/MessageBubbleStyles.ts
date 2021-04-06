@@ -1,9 +1,21 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { BackendGetMessagesOfContactType } from '../backend';
 
 type props = {
     from: BackendGetMessagesOfContactType['from'];
 }
+const myMessageAnimation = keyframes`
+  0%   {right:0px; background-color: rgba(152, 252, 119,1); border-color: rgba(152, 252, 119,1)}
+  10%  {right: 30px; background-color: rgba(152, 252, 119,0.1); border-color: rgba(152, 252, 119,0.1)}
+  100%  {right: 0px; background-color: rgba(152, 252, 119,1); border-color: rgba(152, 252, 119,1)}
+`;
+
+const othersMessageAnimation = keyframes`
+  0%   {left:0px; background-color: rgba(255, 255, 255,1); border-color: rgba(255, 255, 255,1)}
+  10%  {left: 30px; background-color: rgba(255, 255, 255,0.1); border-color: rgba(255, 255, 255,0.1)}
+  100%  {left: 0px; background-color: rgba(255, 255, 255,1); border-color: rgba(255, 255, 255,1)}
+`;
 
 export const Bubble = styled.div <props>`
     border: 1px solid ${(props:props)=>{return props.from === 'me'? 'rgb(152, 252, 119)' : 'white'}};
@@ -18,16 +30,11 @@ export const Bubble = styled.div <props>`
     align-self: ${(props:props)=>{return props.from === 'me'? 'flex-end' : 'flex-start'}};
     position: relative;
     word-wrap: break-word;
-    
-    :last-child{
-        transition: all 2s ease-in-out;
-        transform: translate(20px,0);
-    }
-    
-    
-    
+    animation-name: ${(props:props)=>{return props.from === 'me'? myMessageAnimation : othersMessageAnimation}};;
+    animation-duration: 1s;
 
 `;
+
 
 export const BubblePoint = styled.div`
 

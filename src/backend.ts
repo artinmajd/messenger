@@ -54,12 +54,24 @@ export function getContacts(): BackendGetContactsType[]{
     )
 }
 
-export function getMessagesOfContact(contactName: string):BackendGetMessagesOfContactType[]{
-return([
-    {from: 'me', message: `Salam! ${contactName}`},
-    {from:'me', message: 'chetori?:)))'},
-    {from: 'others', message: 'bah bah!!'},
-    {from: 'others', message: 'chakerim! to khubi?'},
-    {from: 'others', message: 'che khabara?!!'},
-])
+export function getMessagesOfContact(contactName: string): Promise<BackendGetMessagesOfContactType[]>{
+
+    return(
+    new Promise((resolve)=>{
+        
+      setTimeout (()=>{
+        resolve(
+                [
+                    {from: 'me', message: `Salam! ${contactName}`},
+                    {from:'me', message: 'chetori?:)))'},
+                    {from: 'others', message: 'bah bah!!'},
+                    {from: 'others', message: 'chakerim! to khubi?'},
+                    {from: 'others', message: 'che khabara?!!'},
+                ]
+                )
+      },5000) 
+
+    })
+)
+        
 }

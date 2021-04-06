@@ -10,7 +10,8 @@ export const ConversationItemContainer = styled.div <Props>`
     min-height: 100px;
     padding-left: 8px;
     border-bottom: 1px solid steelblue;
-    background-color: ${(props:Props)=>props.isActive? 'rgb(0,130,255)': 'white'};
+    background-image: ${(props:Props)=>props.isActive
+    ? 'linear-gradient(rgb(0,130,255),white)': 'linear-gradient(white,white)'};
     color: ${(props:Props)=>props.isActive? 'white': 'black'}
 `;
 

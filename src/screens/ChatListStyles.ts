@@ -6,5 +6,6 @@ flex-direction: column;
 width: 200px;
 min-width: 200px;
 overflow-y : overlay;
-height: 100%;
+height: 98%;
+overflow-x: clip;
 `;
